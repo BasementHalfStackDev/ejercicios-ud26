@@ -1,11 +1,11 @@
+DROP TABLE IF EXISTS asignado_a;
 DROP TABLE IF EXISTS cientificos;
 DROP TABLE IF EXISTS proyectos;
-DROP TABLE IF EXISTS asignado_a;
 
 CREATE TABLE cientificos(
 	dni VARCHAR(9) NOT NULL,
 	nombre_apellidos VARCHAR(255) DEFAULT NULL,
-	PRIMARY KEY (id)
+	PRIMARY KEY (dni)
 );
 
 CREATE TABLE proyectos(

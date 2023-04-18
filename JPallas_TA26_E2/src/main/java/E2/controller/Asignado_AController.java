@@ -26,12 +26,12 @@ public class Asignado_AController {
 	@Autowired
 	Asignado_AService asignado_AService;
 
-	@GetMapping("/Asignado_as")
+	@GetMapping("/asignado_as")
 	public List<Asignado_A> listAsignado_As() {
 		return asignado_AService.listAsignado_As();
 	}
 
-	@GetMapping("/Asignado_as/{id}")
+	@GetMapping("/asignado_as/{id}")
 	public Asignado_A asignado_AById(@PathVariable(name = "id") Long id) {
 		Asignado_A asignado_AxID = new Asignado_A();
 
@@ -40,12 +40,12 @@ public class Asignado_AController {
 		return asignado_AxID;
 	}
 
-	@PostMapping("/Asignado_as")
+	@PostMapping("/asignado_as")
 	public Asignado_A saveAsignado_A(@RequestBody Asignado_A asignado_A) {
 		return asignado_AService.saveAsignado_A(asignado_A);
 	}
 
-	@PutMapping("/Asignado_as/{id}")
+	@PutMapping("/asignado_as/{id}")
 	public Asignado_A updateAsignado_A(@PathVariable(name = "id") Long id, @RequestBody Asignado_A asignado_A) {
 		Asignado_A selectedAsignado_A = new Asignado_A(id, asignado_A.getCientifico(), asignado_A.getProyecto());
 		Asignado_A updatedAsignado_A = new Asignado_A();
@@ -54,7 +54,7 @@ public class Asignado_AController {
 		return updatedAsignado_A;
 	}
 
-	@DeleteMapping("/Asignado_as/{id}")
+	@DeleteMapping("/asignado_as/{id}")
 	public void deleteAsignado_A(@PathVariable(name = "id") Long id) {
 		asignado_AService.deleteAsignado_A(id);
 	}
