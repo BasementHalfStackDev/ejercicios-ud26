@@ -15,10 +15,11 @@ CREATE TABLE proveedores(
 );
 
 CREATE TABLE suministra(
+	id INT NOT NULL AUTO_INCREMENT,
 	pieza INT NOT NULL,
 	proveedor CHAR(4) NOT NULL,
 	precio INT NOT NULL,
-	PRIMARY KEY(pieza, proveedor),
+	PRIMARY KEY(id),
 	CONSTRAINT FK_pieza FOREIGN KEY (pieza) REFERENCES piezas(id)
 	ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT FK_proveedor FOREIGN KEY (proveedor) REFERENCES proveedores(id)
