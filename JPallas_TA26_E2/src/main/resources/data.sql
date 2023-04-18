@@ -1,47 +1,47 @@
-DROP TABLE IF EXISTS suministra;
-DROP TABLE IF EXISTS proveedores;
-DROP TABLE IF EXISTS piezas;
+DROP TABLE IF EXISTS cientificos;
+DROP TABLE IF EXISTS proyectos;
+DROP TABLE IF EXISTS asignado_a;
 
-CREATE TABLE piezas(
-	id INT NOT NULL AUTO_INCREMENT,
-	nombre VARCHAR(100) DEFAULT NULL,
+CREATE TABLE cientificos(
+	dni VARCHAR(9) NOT NULL,
+	nombre_apellidos VARCHAR(255) DEFAULT NULL,
 	PRIMARY KEY (id)
 );
 
-CREATE TABLE proveedores(
+CREATE TABLE proyectos(
 	id CHAR(4) NOT NULL,
-	nombre VARCHAR(100) DEFAULT NULL,
+	nombre VARCHAR(255) DEFAULT NULL,
+	horas INT DEFAULT NULL,
 	PRIMARY KEY(id)
 );
 
-CREATE TABLE suministra(
+CREATE TABLE asignado_a(
 	id INT NOT NULL AUTO_INCREMENT,
-	pieza INT NOT NULL,
-	proveedor CHAR(4) NOT NULL,
-	precio INT NOT NULL,
+	cientifico VARCHAR(9) NOT NULL,
+	proyecto CHAR(4) NOT NULL,
 	PRIMARY KEY(id),
-	CONSTRAINT FK_pieza FOREIGN KEY (pieza) REFERENCES piezas (id)
+	CONSTRAINT FK_cientifico FOREIGN KEY (cientifico) REFERENCES cientificos (dni)
 	ON UPDATE CASCADE ON DELETE CASCADE,
-	CONSTRAINT FK_proveedor FOREIGN KEY (proveedor) REFERENCES proveedores (id)
+	CONSTRAINT FK_proyecto FOREIGN KEY (proyecto) REFERENCES proyectos (id)
 	ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-INSERT INTO piezas(nombre) VALUES ('Tornillo');
-INSERT INTO piezas(nombre) VALUES ('Arandela');
-INSERT INTO piezas(nombre) VALUES ('Engranaje');
-INSERT INTO piezas(nombre) VALUES ('Muelle');
-INSERT INTO piezas(nombre) VALUES ('Remache');
+INSERT INTO cientificos(dni, nombre_apellidos) VALUES ('77791111A', 'Juan Cuesta');
+INSERT INTO cientificos(dni, nombre_apellidos) VALUES ('77791111B', 'Juan Cuesta Mas');
+INSERT INTO cientificos(dni, nombre_apellidos) VALUES ('77791111C', 'Juan Cuesta Menos');
+INSERT INTO cientificos(dni, nombre_apellidos) VALUES ('77791111D', 'Juan Cuesta MasOMenos');
+INSERT INTO cientificos(dni, nombre_apellidos) VALUES ('77791111E', 'Juan Cuesta Igual');
 
-INSERT INTO proveedores(id, nombre) VALUES ('PRO1', 'Mahle');
-INSERT INTO proveedores(id, nombre) VALUES ('PRO2', 'Bosch');
-INSERT INTO proveedores(id, nombre) VALUES ('PRO3', 'Rheinmetall');
-INSERT INTO proveedores(id, nombre) VALUES ('PRO4', 'Balay');
-INSERT INTO proveedores(id, nombre) VALUES ('PRO5', 'Remaches Jomacho');
+INSERT INTO proyectos(id, nombre, horas) VALUES ('PRO1', 'Proyecto de testeo 1', 10);
+INSERT INTO proyectos(id, nombre, horas) VALUES ('PRO2', 'Proyecto de testeo 2', 20);
+INSERT INTO proyectos(id, nombre, horas) VALUES ('PRO3', 'Proyecto de testeo 3', 30);
+INSERT INTO proyectos(id, nombre, horas) VALUES ('PRO4', 'Proyecto de testeo 4', 40);
+INSERT INTO proyectos(id, nombre, horas) VALUES ('PRO5', 'Proyecto de testeo 5', 50);
 
-INSERT INTO suministra(pieza, proveedor, precio) VALUES (1, 'PRO1', 2);
-INSERT INTO suministra(pieza, proveedor, precio) VALUES (2, 'PRO2', 3);
-INSERT INTO suministra(pieza, proveedor, precio) VALUES (3, 'PRO3', 1);
-INSERT INTO suministra(pieza, proveedor, precio) VALUES (4, 'PRO4', 4);
-INSERT INTO suministra(pieza, proveedor, precio) VALUES (5, 'PRO5', 10);
+INSERT INTO asignado_a(cientifico, proyecto) VALUES ('77791111A', 'PRO1');
+INSERT INTO asignado_a(cientifico, proyecto) VALUES ('77791111B', 'PRO2');
+INSERT INTO asignado_a(cientifico, proyecto) VALUES ('77791111C', 'PRO3');
+INSERT INTO asignado_a(cientifico, proyecto) VALUES ('77791111D', 'PRO4');
+INSERT INTO asignado_a(cientifico, proyecto) VALUES ('77791111E', 'PRO5');
 
 
