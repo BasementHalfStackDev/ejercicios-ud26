@@ -54,8 +54,8 @@ INSERT INTO maquinas_registradoras(piso) VALUES (1);
 INSERT INTO maquinas_registradoras(piso) VALUES (2);
 INSERT INTO maquinas_registradoras(piso) VALUES (1);
 
-INSERT INTO ventas(cajero, producto, caja_registradora) VALUES (1, 1, 1);
-INSERT INTO ventas(cajero, producto, caja_registradora) VALUES (2, 2, 2);
-INSERT INTO ventas(cajero, producto, caja_registradora) VALUES (3, 3, 3);
-INSERT INTO ventas(cajero, producto, caja_registradora) VALUES (4, 4, 4);
-INSERT INTO ventas(cajero, producto, caja_registradora) VALUES (5, 5, 5);
+INSERT INTO ventas(cajero, producto, maquina_registradora) VALUES (1, 1, 1);
+INSERT INTO ventas(cajero, producto, maquina_registradora) VALUES (2, 2, 2);
+INSERT INTO ventas(cajero, producto, maquina_registradora) VALUES (3, 3, 3);
+INSERT INTO ventas(cajero, producto, maquina_registradora) VALUES (4, 4, 4);
+INSERT INTO ventas(cajero, producto, maquina_registradora) VALUES (5, 5, 5);
