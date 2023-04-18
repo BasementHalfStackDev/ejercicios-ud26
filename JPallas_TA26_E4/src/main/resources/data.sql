@@ -1,61 +1,65 @@
-DROP TABLE IF EXISTS ventas;
-DROP TABLE IF EXISTS cajeros;
-DROP TABLE IF EXISTS productos;
-DROP TABLE IF EXISTS maquinas_registradoras;
+DROP TABLE IF EXISTS reservas;
+DROP TABLE IF EXISTS equipos;
+DROP TABLE IF EXISTS investigadores;
+DROP TABLE IF EXISTS facultades;
 
-CREATE TABLE cajeros(
+CREATE TABLE facultades(
 	id INT NOT NULL AUTO_INCREMENT,
-	nombre_apellidos VARCHAR(255) DEFAULT NULL,
+	nombre VARCHAR(100) DEFAULT NULL,
 	PRIMARY KEY (id)
 );
 
-CREATE TABLE productos(
-	id INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE equipos(
+	id CHAR(4) NOT NULL,
 	nombre VARCHAR(100) DEFAULT NULL,
-	precio INT DEFAULT NULL,
-	PRIMARY KEY(id)
-);
-
-CREATE TABLE maquinas_registradoras(
-	id INT NOT NULL AUTO_INCREMENT,
-	piso INT DEFAULT NULL,
-	PRIMARY KEY(id)
-);
-
-CREATE TABLE ventas(
-	id INT NOT NULL AUTO_INCREMENT,
-	cajero INT NOT NULL,
-	producto INT NOT NULL,
-	maquina_registradora INT NOT NULL,
+	facultad INT NOT NULL,
 	PRIMARY KEY(id),
-	CONSTRAINT FK_cajero FOREIGN KEY (cajero) REFERENCES cajeros (id)
-	ON UPDATE CASCADE ON DELETE CASCADE,
-	CONSTRAINT FK_producto FOREIGN KEY (producto) REFERENCES productos (id)
-	ON UPDATE CASCADE ON DELETE CASCADE,
-	CONSTRAINT FK_maquina_registradora FOREIGN KEY (maquina_registradora)
-	REFERENCES maquinas_registradoras (id) ON UPDATE CASCADE ON DELETE CASCADE
+	CONSTRAINT FK_facultad FOREIGN KEY (facultad) REFERENCES facultades (id)
+	ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-INSERT INTO cajeros(nombre_apellidos) VALUES ('Juan Cuesta');
-INSERT INTO cajeros(nombre_apellidos) VALUES ('Juan Cuesta Mas');
-INSERT INTO cajeros(nombre_apellidos) VALUES ('Juan Cuesta Menos');
-INSERT INTO cajeros(nombre_apellidos) VALUES ('Juan Cuesta MasOMenos');
-INSERT INTO cajeros(nombre_apellidos) VALUES ('Juan Cuesta Igual');
+CREATE TABLE investigadores(
+	dni VARCHAR(9) NOT NULL,
+	nombre VARCHAR(100) DEFAULT NULL,
+	facultad INT NOT NULL,
+	PRIMARY KEY(dni),
+	CONSTRAING FK_facultad FOREIGN KEY (facultad) REFERENCES facultades(id)
+	ON UPDATE CASCADE ON DELETE CASCADE
+);
 
-INSERT INTO productos(nombre, precio) VALUES ('Manzana', 1);
-INSERT INTO productos(nombre, precio) VALUES ('Limon', 999);
-INSERT INTO productos(nombre, precio) VALUES ('Videojuego', 69);
-INSERT INTO productos(nombre, precio) VALUES ('Revista', 2);
-INSERT INTO productos(nombre, precio) VALUES ('Guitarra', 200);
+CREATE TABLE reservas(
+	id INT NOT NULL AUTO_INCREMENT,
+	equipo CHAR(4) NOT NULL,
+	investigador VARCHAR(9) NOT NULL,
+	comienzo DATETIME NOT NULL,
+	fin DATETIME NOT NULL,
+	PRIMARY KEY(id),
+	CONSTRAINT FK_equipo FOREIGN KEY (equipo) REFERENCES equipos (id)
+	ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT FK_investigador FOREIGN KEY (investigador) REFERENCES investigadores (dni)
+	ON UPDATE CASCADE ON DELETE CASCADE
+);
 
-INSERT INTO maquinas_registradoras(piso) VALUES (1);
-INSERT INTO maquinas_registradoras(piso) VALUES (2);
-INSERT INTO maquinas_registradoras(piso) VALUES (1);
-INSERT INTO maquinas_registradoras(piso) VALUES (2);
-INSERT INTO maquinas_registradoras(piso) VALUES (1);
+INSERT INTO facultades(nombre) VALUES ('Facultad de Medicina');
+INSERT INTO facultades(nombre) VALUES ('Facultad de Ciencia');
+INSERT INTO facultades(nombre) VALUES ('Facultad de Literatura');
+INSERT INTO facultades(nombre) VALUES ('Facultad de Derecho');
+INSERT INTO facultades(nombre) VALUES ('Facultad de Izquierdo');
 
-INSERT INTO ventas(cajero, producto, maquina_registradora) VALUES (1, 1, 1);
-INSERT INTO ventas(cajero, producto, maquina_registradora) VALUES (2, 2, 2);
-INSERT INTO ventas(cajero, producto, maquina_registradora) VALUES (3, 3, 3);
-INSERT INTO ventas(cajero, producto, maquina_registradora) VALUES (4, 4, 4);
-INSERT INTO ventas(cajero, producto, maquina_registradora) VALUES (5, 5, 5);
+INSERT INTO equipos(id, nombre, facultad) VALUES ('TEM1', 'Equipo 1', 1);
+INSERT INTO equipos(id, nombre, facultad) VALUES ('TEM2', 'Equipo 2', 2);
+INSERT INTO equipos(id, nombre, facultad) VALUES ('TEM3', 'Equipo 3', 3);
+INSERT INTO equipos(id, nombre, facultad) VALUES ('TEM4', 'Equipo 4', 4);
+INSERT INTO equipos(id, nombre, facultad) VALUES ('TEM5', 'Equipo 5', 5);
+
+INSERT INTO investigadores(dni, nombre, facultad) VALUES ('12345678A', 'Investigador 1', 1);
+INSERT INTO investigadores(dni, nombre, facultad) VALUES ('12345678B', 'Investigador 2', 2);
+INSERT INTO investigadores(dni, nombre, facultad) VALUES ('12345678C', 'Investigador 3', 3);
+INSERT INTO investigadores(dni, nombre, facultad) VALUES ('12345678D', 'Investigador 4', 4);
+INSERT INTO investigadores(dni, nombre, facultad) VALUES ('12345678E', 'Investigador 5', 5);
+
+INSERT INTO reservas(equipo, investigador, comienzo, fin) VALUES ('TEM1', '12345678A', '2022-01-01 00:00:00', '2022-01-03 00:00:00');
+INSERT INTO reservas(equipo, investigador, comienzo, fin) VALUES ('TEM2', '12345678B', '2022-01-02 00:00:00', '2023-01-04 00:00:00');
+INSERT INTO reservas(equipo, investigador, comienzo, fin) VALUES ('TEM3', '12345678C', '2022-02-01 00:00:00', '2024-03-03 00:00:00');
+INSERT INTO reservas(equipo, investigador, comienzo, fin) VALUES ('TEM4', '12345678D', '2022-01-01 00:00:00', '2023-05-01 00:00:00');
+INSERT INTO reservas(equipo, investigador, comienzo, fin) VALUES ('TEM5', '12345678E', '2022-01-01 00:00:00', '2022-01-01 16:30:00');
