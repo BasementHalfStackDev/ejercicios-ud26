@@ -3,6 +3,7 @@
  */
 package E1.dto;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,6 +29,7 @@ public class Suministro {
 	@JoinColumn(name = "proveedor")
 	private Proveedor proveedor;
 
+	@Column(name = "precio")
 	private int precio;
 
 	// Constructor
@@ -42,6 +44,10 @@ public class Suministro {
 	}
 
 	// Getters
+	public Long getId() {
+		return id;
+	}
+
 	public Pieza getPieza() {
 		return pieza;
 	}
@@ -55,6 +61,9 @@ public class Suministro {
 	}
 
 	// Setters
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public void setPieza(Pieza pieza) {
 		this.pieza = pieza;
 	}
