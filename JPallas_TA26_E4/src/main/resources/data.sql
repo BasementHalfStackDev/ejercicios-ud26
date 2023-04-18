@@ -23,7 +23,7 @@ CREATE TABLE investigadores(
 	nombre VARCHAR(100) DEFAULT NULL,
 	facultad INT NOT NULL,
 	PRIMARY KEY(dni),
-	CONSTRAING FK_facultad_investigador FOREIGN KEY (facultad) REFERENCES facultades(id)
+	CONSTRAINT FK_facultad_investigador FOREIGN KEY (facultad) REFERENCES facultades(id)
 	ON UPDATE CASCADE ON DELETE CASCADE
 );
 
