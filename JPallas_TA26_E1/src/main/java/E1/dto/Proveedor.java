@@ -24,6 +24,7 @@ public class Proveedor {
 
 	private String nombre;
 
+	@OneToMany
 	@JoinColumn(name = "FK_proveedor")
 	private List<Suministro> suministro;
 

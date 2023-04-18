@@ -16,13 +16,13 @@ CREATE TABLE proveedores(
 
 CREATE TABLE suministra(
 	id INT NOT NULL AUTO_INCREMENT,
-	pieza_id INT NOT NULL,
-	proveedor_id CHAR(4) NOT NULL,
+	pieza INT NOT NULL,
+	proveedor CHAR(4) NOT NULL,
 	precio INT NOT NULL,
 	PRIMARY KEY(id),
-	CONSTRAINT FK_pieza FOREIGN KEY (pieza_id) REFERENCES piezas(id)
+	CONSTRAINT FK_pieza FOREIGN KEY (pieza) REFERENCES piezas (id)
 	ON UPDATE CASCADE ON DELETE CASCADE,
-	CONSTRAINT FK_proveedor FOREIGN KEY (proveedor_id) REFERENCES proveedores(id)
+	CONSTRAINT FK_proveedor FOREIGN KEY (proveedor) REFERENCES proveedores (id)
 	ON UPDATE CASCADE ON DELETE CASCADE
 );
 
@@ -38,10 +38,10 @@ INSERT INTO proveedores(id, nombre) VALUES ('PRO3', 'Rheinmetall');
 INSERT INTO proveedores(id, nombre) VALUES ('PRO4', 'Balay');
 INSERT INTO proveedores(id, nombre) VALUES ('PRO5', 'Remaches Jomacho');
 
-INSERT INTO suministra(pieza_id, proveedor_id, precio) VALUES (1, 'PRO1', 2);
-INSERT INTO suministra(pieza_id, proveedor_id, precio) VALUES (2, 'PRO2', 3);
-INSERT INTO suministra(pieza_id, proveedor_id, precio) VALUES (3, 'PRO3', 1);
-INSERT INTO suministra(pieza_id, proveedor_id, precio) VALUES (4, 'PRO4', 4);
-INSERT INTO suministra(pieza_id, proveedor_id, precio) VALUES (5, 'PRO5', 10);
+INSERT INTO suministra(pieza, proveedor, precio) VALUES (1, 'PRO1', 2);
+INSERT INTO suministra(pieza, proveedor, precio) VALUES (2, 'PRO2', 3);
+INSERT INTO suministra(pieza, proveedor, precio) VALUES (3, 'PRO3', 1);
+INSERT INTO suministra(pieza, proveedor, precio) VALUES (4, 'PRO4', 4);
+INSERT INTO suministra(pieza, proveedor, precio) VALUES (5, 'PRO5', 10);
 
 

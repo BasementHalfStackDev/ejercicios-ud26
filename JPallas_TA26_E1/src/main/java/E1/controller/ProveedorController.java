@@ -26,12 +26,12 @@ public class ProveedorController {
 	@Autowired
 	ProveedorService proveedorService;
 
-	@GetMapping("/proveedors")
+	@GetMapping("/proveedores")
 	public List<Proveedor> listProveedores() {
 		return proveedorService.listProveedores();
 	}
 
-	@GetMapping("/proveedors/{id}")
+	@GetMapping("/proveedores/{id}")
 	public Proveedor proveedorById(@PathVariable(name = "id") String id) {
 		Proveedor proveedorxID = new Proveedor();
 
@@ -40,12 +40,12 @@ public class ProveedorController {
 		return proveedorxID;
 	}
 
-	@PostMapping("/proveedors")
+	@PostMapping("/proveedores")
 	public Proveedor saveProveedor(@RequestBody Proveedor proveedor) {
 		return proveedorService.saveProveedor(proveedor);
 	}
 
-	@PutMapping("/proveedors/{id}")
+	@PutMapping("/proveedores/{id}")
 	public Proveedor updateProveedor(@PathVariable(name = "id") String id, @RequestBody Proveedor proveedor) {
 		Proveedor selectedProveedor = new Proveedor(id, proveedor.getNombre());
 		Proveedor updatedProveedor = new Proveedor();
@@ -54,7 +54,7 @@ public class ProveedorController {
 		return updatedProveedor;
 	}
 
-	@DeleteMapping("/proveedors/{id}")
+	@DeleteMapping("/proveedores/{id}")
 	public void deleteProveedor(@PathVariable(name = "id") String id) {
 		proveedorService.deleteProveedor(id);
 	}
