@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import E3.dto.Venta;
 
-public interface ventaDAO extends JpaRepository<Venta, Long> {
+public interface VentaDAO extends JpaRepository<Venta, Long> {
 
 }
